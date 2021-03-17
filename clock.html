@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- font awesome kit code  -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title></title>
+    <link rel="stylesheet" href="clock.css">
+ </head>
+<body>
+
+
+<div class="clock">
+ <div class="clock-face">
+     <div class=" hand hour-hand"></div>
+     <div class=" hand min-hand"></div>
+     <div class=" hand second-hand"></div>
+ </div>
+</div>
+
+<div class="digitaltime"  id="digital">
+
+    </div>
+
+
+
+
+
+<script >
+const secondhand=document.querySelector('.second-hand ');
+const minhand=document.querySelector('.min-hand ');
+const hourhand=document.querySelector('.hour-hand ');
+function setTime()
+    {
+
+const now =new Date();
+
+const seconds=now.getSeconds();
+const secondsdegrees=((seconds/60) * 360) + 90;
+secondhand.style.transform=`rotate(${secondsdegrees}deg)`;
+
+
+
+const min=now.getMinutes();
+const mindegrees= ((min/60) * 360) + 90;
+minhand.style.transform=`rotate(${mindegrees}deg)`;
+
+const hour=now.getHours();
+const hourdegrees= ((hour/12) * 360) + 90;
+hourhand.style.transform=`rotate(${hourdegrees}deg)`;
+
+var h=hour;
+var m=min;
+var s=seconds;
+var sessions ="AM";
+if(h==0)
+{
+    h=12;
+}
+if(h>12)
+{
+    h=h-12;
+    sessions="PM";
+}
+if(h<10)
+{
+    h="0"+h;
+
+}
+if(m<10)
+{
+m="0"+m;
+}
+if(s<10)
+{
+    s="0"+s;
+}
+
+var time = h + ":" + m + ":"+ s + " "+ sessions;
+
+
+document.getElementById('digital').innerText=time;
+document.getElementById('digital').textContent=time;
+
+
+    }
+
+    setInterval(setTime,1000);
+    </script>
+    <!-- <link rel="slidingsheets" href="slideShow.js"> -->
+</body>
+
+</html>
